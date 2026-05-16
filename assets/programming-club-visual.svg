@@ -1,0 +1,42 @@
+<svg width="720" height="560" viewBox="0 0 720 560" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Programming club visual</title>
+  <desc id="desc">A bright contest dashboard with code, ranking cards, and programming symbols.</desc>
+  <rect width="720" height="560" rx="36" fill="#F8FBFF"/>
+  <circle cx="114" cy="94" r="74" fill="#E2F4FF"/>
+  <circle cx="619" cy="458" r="96" fill="#FFF0D2"/>
+  <circle cx="574" cy="116" r="60" fill="#DEF7EC"/>
+  <path d="M96 409C158 343 232 356 301 414C384 484 468 501 604 354" stroke="#D8E8F2" stroke-width="18" stroke-linecap="round"/>
+  <rect x="89" y="82" width="470" height="324" rx="24" fill="#10233A"/>
+  <rect x="89" y="82" width="470" height="52" rx="24" fill="#183655"/>
+  <circle cx="124" cy="108" r="8" fill="#FF6B6B"/>
+  <circle cx="151" cy="108" r="8" fill="#F5B84B"/>
+  <circle cx="178" cy="108" r="8" fill="#30C48D"/>
+  <rect x="118" y="164" width="110" height="12" rx="6" fill="#72D6FF"/>
+  <rect x="249" y="164" width="206" height="12" rx="6" fill="#2DD4BF"/>
+  <rect x="118" y="203" width="62" height="12" rx="6" fill="#FBBF24"/>
+  <rect x="198" y="203" width="264" height="12" rx="6" fill="#6EA8FF"/>
+  <rect x="145" y="242" width="210" height="12" rx="6" fill="#93C5FD"/>
+  <rect x="373" y="242" width="83" height="12" rx="6" fill="#2DD4BF"/>
+  <rect x="145" y="281" width="96" height="12" rx="6" fill="#FBBF24"/>
+  <rect x="259" y="281" width="173" height="12" rx="6" fill="#72D6FF"/>
+  <rect x="118" y="320" width="190" height="12" rx="6" fill="#6EA8FF"/>
+  <rect x="326" y="320" width="94" height="12" rx="6" fill="#2DD4BF"/>
+  <rect x="398" y="357" width="178" height="126" rx="22" fill="white" stroke="#D7E5EF" stroke-width="2"/>
+  <text x="426" y="396" fill="#0F766E" font-family="JetBrains Mono, monospace" font-size="20" font-weight="700">AC</text>
+  <text x="426" y="430" fill="#10233A" font-family="Space Grotesk, Arial, sans-serif" font-size="25" font-weight="700">+120</text>
+  <text x="426" y="458" fill="#5A6E7C" font-family="Manrope, Arial, sans-serif" font-size="15" font-weight="700">rating gain</text>
+  <rect x="535" y="112" width="112" height="112" rx="22" fill="white" stroke="#D7E5EF" stroke-width="2"/>
+  <path d="M582 159L556 184L582 209" stroke="#2563EB" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M603 159L629 184L603 209" stroke="#F59E0B" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="133" y="386" width="196" height="96" rx="22" fill="white" stroke="#D7E5EF" stroke-width="2"/>
+  <circle cx="173" cy="434" r="22" fill="#E0F2FE"/>
+  <circle cx="226" cy="434" r="22" fill="#DCFCE7"/>
+  <circle cx="279" cy="434" r="22" fill="#FEF3C7"/>
+  <text x="160" y="441" fill="#2563EB" font-family="JetBrains Mono, monospace" font-size="18" font-weight="700">01</text>
+  <text x="213" y="441" fill="#00895F" font-family="JetBrains Mono, monospace" font-size="18" font-weight="700">10</text>
+  <text x="266" y="441" fill="#B45309" font-family="JetBrains Mono, monospace" font-size="18" font-weight="700">11</text>
+  <path d="M651 290C651 309.882 634.882 326 615 326C595.118 326 579 309.882 579 290C579 270.118 595.118 254 615 254C634.882 254 651 270.118 651 290Z" fill="#2563EB"/>
+  <path d="M616 270V291L632 301" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M74 245L41 212L74 179" stroke="#00A884" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M641 381L681 421L641 461" stroke="#F59E0B" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
