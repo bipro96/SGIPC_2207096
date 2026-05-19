@@ -1,38 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SGIPC — Special Group Interested in Programming Contest | KUET</title>
-    <meta name="description" content="SGIPC - The premier competitive programming community at Khulna University of Engineering & Technology.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+<?php
 
-    
-    <nav class="navbar">
-        <div class="container">
-            <a href="index.html" class="logo">SGIPC</a>
-            <button class="nav-toggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-links">
-                <li><a href="index.html" class="nav-link active">Home</a></li>
-                <li><a href="about.html" class="nav-link">About</a></li>
-                <li><a href="events.html" class="nav-link">Events</a></li>
-                <li><a href="members.html" class="nav-link">Members</a></li>
-                <li><a href="resources.html" class="nav-link">Resources</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+require_once 'includes/functions.php';
+$pageTitle = 'Home';
+$activePage = 'home';
 
-   
+
+$featuredEvents = getFeaturedEvents(3);
+$members = getAllMembers();
+$settings = [];
+$stmt = $pdo->query("SELECT * FROM settings");
+while ($row = $stmt->fetch()) { $settings[$row['setting_key']] = $row['setting_value']; }
+
+include 'includes/header.php';
+?>
+
+
     <header class="hero">
         <div class="hero-bg"></div>
         <div class="container">
@@ -40,88 +22,105 @@
                 <div class="hero-content">
                     <p class="hero-label">Khulna University of Engineering & Technology</p>
                     <h1 class="hero-title">SGIPC</h1>
-                    <p class="hero-tagline">A creative programming club where KUET coders practice, compete, and build contest confidence together.</p>
+                    <p class="hero-tagline"><?php echo sanitize($settings['tagline'] ?? 'A creative programming club where KUET coders practice, compete, and build contest confidence together.'); ?></p>
                     <div class="hero-buttons">
-                        <a href="events.html" class="btn btn-primary">Explore Events</a>
-                        <a href="contact.html" class="btn btn-secondary">Join Community</a>
+                        <a href="events.php" class="btn btn-primary">Explore Events</a>
+                        <a href="contact.php" class="btn btn-secondary">Join Community</a>
+                    </div>
+                    <div class="hero-proof" aria-label="SGIPC focus areas">
+                        <span>Weekly contests</span>
+                        <span>Mentor-led training</span>
+                        <span>ICPC preparation</span>
                     </div>
                 </div>
                 <div class="hero-visual" aria-hidden="true">
-                    <img src="assets/programming-club-visual.svg" alt="" class="hero-image">
+                    <img src="assets/images/hero-visual.svg" alt="" class="hero-image" onerror="this.style.display='none'">
                 </div>
             </div>
         </div>
     </header>
 
     <main>
-     
-        <section class="section">
+        <section class="section stats-section">
             <div class="container">
                 <div class="section-header animate-on-scroll">
-                    <p class="section-label">// Numbers</p>
+                    <p class="section-label">Numbers</p>
                     <h2 class="section-title">Growing Together</h2>
                 </div>
                 <div class="stats-grid">
                     <div class="stat-item animate-on-scroll">
-                        <div class="stat-number" data-target="120">0</div>
+                        <div class="stat-number" data-target="<?php echo (int)($settings['member_count'] ?? 120); ?>">0</div>
                         <div class="stat-label">Active Members</div>
                     </div>
                     <div class="stat-item animate-on-scroll">
-                        <div class="stat-number" data-target="45">0</div>
+                        <div class="stat-number" data-target="<?php echo (int)($settings['contests_hosted'] ?? 45); ?>">0</div>
                         <div class="stat-label">Contests Hosted</div>
                     </div>
                     <div class="stat-item animate-on-scroll">
-                        <div class="stat-number" data-target="340">0</div>
+                        <div class="stat-number" data-target="<?php echo (int)($settings['total_participants'] ?? 340); ?>">0</div>
                         <div class="stat-label">Participants</div>
                     </div>
                 </div>
             </div>
         </section>
 
- 
-        <section class="section" style="background: var(--bg-surface);">
+
+        <section class="section section-tinted">
             <div class="container">
                 <div class="section-header animate-on-scroll">
-                    <p class="section-label">// Highlights</p>
+                    <p class="section-label">Highlights</p>
                     <h2 class="section-title">Featured Events</h2>
                     <p class="section-subtitle">Recent and upcoming activities that define our community</p>
                 </div>
-                <div class="grid-3" id="events-grid">
-                    <!-- Dynamically rendered by JavaScript -->
+                <div class="grid-3">
+                    <?php foreach ($featuredEvents as $event): ?>
+                    <article class="card event-card animate-on-scroll">
+                        <div class="event-card-top">
+                            <div class="card-date"><?php echo formatDate($event['event_date']); ?></div>
+                            <div class="event-status <?php echo $event['status']; ?>">
+                                <span><?php echo $event['status'] === 'upcoming' ? '&#9679;' : '&#9675;'; ?></span>
+                                <span><?php echo ucfirst($event['status']); ?></span>
+                            </div>
+                        </div>
+                        <h3 class="card-title"><?php echo sanitize($event['title']); ?></h3>
+                        <div class="event-meta"><?php echo sanitize($event['location']); ?></div>
+                        <p class="card-text"><?php echo sanitize($event['description']); ?></p>
+                    </article>
+                    <?php endforeach; ?>
                 </div>
                 <div class="text-center mt-4">
-                    <a href="events.html" class="btn btn-secondary">View All Events</a>
+                    <a href="events.php" class="btn btn-secondary">View All Events</a>
                 </div>
             </div>
         </section>
 
-        
+      
         <section class="section">
             <div class="container">
                 <div class="section-header animate-on-scroll">
-                    <p class="section-label">// Achievements</p>
+                    <p class="section-label">Achievements</p>
                     <h2 class="section-title">Recent Milestones</h2>
                 </div>
                 <div class="grid-3">
                     <div class="card animate-on-scroll">
-                        <div class="achievement-badge mb-2">
-                            <span>🏆</span>
+                        <div class="achievement-badge">
+                            <span>&#9733;</span>
                             <span>ICPC 2024</span>
                         </div>
                         <h3 class="card-title">Asia Regional Finalist</h3>
                         <p class="card-text">Two SGIPC teams qualified for the ICPC Asia Dhaka Regional 2024, marking our best performance to date.</p>
                     </div>
                     <div class="card animate-on-scroll">
-                        <div class="achievement-badge mb-2">
-                            <span>🚀</span>
+                        <div class="achievement-badge">
+                            <span>&#9733;</span>
                             <span>KUET IUPC</span>
                         </div>
                         <h3 class="card-title">50+ Universities</h3>
                         <p class="card-text">Our Inter University Programming Contest brought together over 150 teams from across Bangladesh.</p>
                     </div>
                     <div class="card animate-on-scroll">
-                        <div class="achievement-badge mb-2">
-                            <span>⭐</span>
+                        <div class="achievement-badge">
+                            <span>&#9733;</span>
                             <span>Training</span>
                         </div>
                         <h3 class="card-title">500+ Problems Solved</h3>
@@ -131,45 +130,45 @@
             </div>
         </section>
 
-       
-        <section class="section" style="background: var(--bg-surface);">
+ 
+        <section class="section section-cta">
             <div class="container">
                 <div class="text-center animate-on-scroll">
                     <h2 class="section-title">Ready to Level Up?</h2>
                     <p class="section-subtitle mb-4">Join SGIPC and become part of KUET's most passionate competitive programming community.</p>
                     <div class="hero-buttons" style="justify-content: center;">
-                        <a href="resources.html" class="btn btn-primary">Start Learning</a>
-                        <a href="about.html" class="btn btn-secondary">Learn More</a>
+                        <a href="resources.php" class="btn btn-primary">Start Learning</a>
+                        <a href="about.php" class="btn btn-secondary">Learn More</a>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
- 
+
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="index.html" class="logo">SGIPC</a>
+                    <a href="index.php" class="logo">SGIPC</a>
                     <p>Special Group Interested in Programming Contest at Khulna University of Engineering & Technology. Building the next generation of competitive programmers since 2015.</p>
                 </div>
                 <div class="footer-nav">
                     <h4 class="footer-title">Quick Links</h4>
                     <ul class="footer-links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="events.html">Events</a></li>
-                        <li><a href="members.html">Members</a></li>
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="about.php">About</a></li>
+                        <li><a href="events.php">Events</a></li>
+                        <li><a href="members.php">Members</a></li>
                     </ul>
                 </div>
                 <div class="footer-nav">
                     <h4 class="footer-title">Resources</h4>
                     <ul class="footer-links">
-                        <li><a href="resources.html">Beginner</a></li>
-                        <li><a href="resources.html">Intermediate</a></li>
-                        <li><a href="resources.html">Advanced</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="resources.php">Beginner</a></li>
+                        <li><a href="resources.php">Intermediate</a></li>
+                        <li><a href="resources.php">Advanced</a></li>
+                        <li><a href="contact.php">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-nav">
@@ -183,7 +182,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p class="footer-copyright">&copy; 2024 SGIPC — KUET. All rights reserved.</p>
+                <p class="footer-copyright">&copy; <?php echo date('Y'); ?> SGIPC &mdash; KUET. All rights reserved.</p>
                 <div class="footer-social">
                     <a href="#" aria-label="Facebook">f</a>
                     <a href="#" aria-label="Discord">d</a>
@@ -194,9 +193,4 @@
         </div>
     </footer>
 
-   
-    <button class="scroll-top" aria-label="Scroll to top">↑</button>
-
-    <script src="js/script.js"></script>
-</body>
-</html>
+<?php include 'includes/footer.php'; ?>
