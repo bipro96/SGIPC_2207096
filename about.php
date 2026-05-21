@@ -1,64 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About — SGIPC | KUET</title>
-    <meta name="description" content="Learn about SGIPC, our mission, vision, and why we are passionate about competitive programming at KUET.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+<?php
+require_once 'includes/functions.php';
+$pageTitle = 'About Us';
+$activePage = 'about';
 
- 
-    <nav class="navbar">
-        <div class="container">
-            <a href="index.html" class="logo">SGIPC</a>
-            <button class="nav-toggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-links">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="about.html" class="nav-link active">About</a></li>
-                <li><a href="events.html" class="nav-link">Events</a></li>
-                <li><a href="members.html" class="nav-link">Members</a></li>
-                <li><a href="resources.html" class="nav-link">Resources</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+$settings = [];
+$stmt = $pdo->query("SELECT * FROM settings");
+while ($row = $stmt->fetch()) { $settings[$row['setting_key']] = $row['setting_value']; }
 
-    
+include 'includes/header.php';
+?>
+
     <header class="page-header">
         <div class="page-header-bg"></div>
         <div class="container">
-            <p class="section-label">// About Us</p>
+            <p class="section-label">About Us</p>
             <h1 class="section-title">Who We Are</h1>
             <p class="section-subtitle">The story, mission, and people behind SGIPC</p>
         </div>
     </header>
 
     <main>
-        
+      
         <section class="section">
             <div class="container">
                 <div class="grid-2">
                     <div class="animate-on-scroll">
-                        <p class="section-label">// Mission</p>
+                        <p class="section-label">Mission</p>
                         <h2 class="section-title" style="text-align: left;">What Drives Us</h2>
                         <p class="text-secondary" style="font-size: 1rem; line-height: 1.8;">
-                            Our mission is to cultivate a thriving competitive programming ecosystem at KUET. We believe that algorithmic problem solving is not just a sport — it is a fundamental skill that sharpens analytical thinking, prepares students for technical careers, and opens doors to global opportunities.
+                            Our mission is to cultivate a thriving competitive programming ecosystem at KUET. We believe that algorithmic problem solving is not just a sport &mdash; it is a fundamental skill that sharpens analytical thinking, prepares students for technical careers, and opens doors to global opportunities.
                         </p>
                         <p class="text-secondary mt-2" style="font-size: 1rem; line-height: 1.8;">
                             We organize regular contests, workshops, and training sessions to ensure every motivated student has the resources and mentorship to grow from beginner to expert level.
                         </p>
                     </div>
                     <div class="animate-on-scroll">
-                        <p class="section-label">// Vision</p>
+                        <p class="section-label">Vision</p>
                         <h2 class="section-title" style="text-align: left;">Where We Are Headed</h2>
                         <p class="text-secondary" style="font-size: 1rem; line-height: 1.8;">
                             We envision KUET as one of the top competitive programming hubs in Bangladesh. Our goal is to consistently produce ICPC World Finals qualifiers, place members in top-tier tech companies, and build a self-sustaining community where seniors mentor juniors year after year.
@@ -71,11 +48,11 @@
             </div>
         </section>
 
-    
-        <section class="section" style="background: var(--bg-surface);">
+ 
+        <section class="section section-tinted">
             <div class="container">
                 <div class="section-header animate-on-scroll">
-                    <p class="section-label">// The Sport</p>
+                    <p class="section-label">The Sport</p>
                     <h2 class="section-title">What is Competitive Programming?</h2>
                 </div>
                 <div class="animate-on-scroll" style="max-width: 800px; margin: 0 auto;">
@@ -92,7 +69,7 @@
                     <div class="card animate-on-scroll">
                         <div class="about-feature-icon">02</div>
                         <h3 class="card-title">Time & Memory</h3>
-                        <p class="card-text">Write efficient code that runs within strict limits — often milliseconds and megabytes — demanding deep optimization skills.</p>
+                        <p class="card-text">Write efficient code that runs within strict limits &mdash; often milliseconds and megabytes &mdash; demanding deep optimization skills.</p>
                     </div>
                     <div class="card animate-on-scroll">
                         <div class="about-feature-icon">03</div>
@@ -103,65 +80,65 @@
             </div>
         </section>
 
-
+   
         <section class="section">
             <div class="container">
                 <div class="section-header animate-on-scroll">
-                    <p class="section-label">// Benefits</p>
+                    <p class="section-label">Benefits</p>
                     <h2 class="section-title">Why Join SGIPC?</h2>
                 </div>
                 <div class="grid-2">
                     <div class="about-feature animate-on-scroll">
-                        <div class="about-feature-icon">👥</div>
+                        <div class="about-feature-icon">MNT</div>
                         <div class="about-feature-content">
                             <h3>Dedicated Mentorship</h3>
                             <p>Learn from experienced competitive programmers who have qualified for ICPC Regionals and interned at top tech companies. Our senior members actively guide juniors through structured problem lists and code reviews.</p>
                         </div>
                     </div>
                     <div class="about-feature animate-on-scroll">
-                        <div class="about-feature-icon">📅</div>
+                        <div class="about-feature-icon">CAL</div>
                         <div class="about-feature-content">
                             <h3>Regular Contests</h3>
                             <p>Participate in weekly and monthly internal contests that simulate real competition environments. Track your rating growth and identify weak areas through detailed post-contest discussions.</p>
                         </div>
                     </div>
                     <div class="about-feature animate-on-scroll">
-                        <div class="about-feature-icon">📚</div>
+                        <div class="about-feature-icon">LIB</div>
                         <div class="about-feature-content">
                             <h3>Curated Resources</h3>
-                            <p>Access a carefully organized library of learning materials — from beginner-friendly tutorials to advanced competitive programming topics. No more searching; everything is structured and club-approved.</p>
+                            <p>Access a carefully organized library of learning materials &mdash; from beginner-friendly tutorials to advanced competitive programming topics. No more searching; everything is structured and club-approved.</p>
                         </div>
                     </div>
                     <div class="about-feature animate-on-scroll">
-                        <div class="about-feature-icon">🤝</div>
+                        <div class="about-feature-icon">TM</div>
                         <div class="about-feature-content">
                             <h3>Team Building</h3>
                             <p>Find your perfect ICPC teammates within the club. We facilitate team formation, collaborative practice sessions, and communication training so you perform under pressure.</p>
                         </div>
                     </div>
                     <div class="about-feature animate-on-scroll">
-                        <div class="about-feature-icon">💼</div>
+                        <div class="about-feature-icon">JOB</div>
                         <div class="about-feature-content">
                             <h3>Career Edge</h3>
                             <p>Competitive programming skills directly translate to better performance in technical interviews at companies like Google, Meta, and Amazon. Many of our alumni credit CP for their placement success.</p>
                         </div>
                     </div>
                     <div class="about-feature animate-on-scroll">
-                        <div class="about-feature-icon">🎯</div>
+                        <div class="about-feature-icon">CP</div>
                         <div class="about-feature-content">
                             <h3>Community & Culture</h3>
-                            <p>Be part of a community that celebrates problem solving. From late-night upsolving sessions to celebratory team dinners after contests — the bonds formed here last beyond graduation.</p>
+                            <p>Be part of a community that celebrates problem solving. From late-night upsolving sessions to celebratory team dinners after contests &mdash; the bonds formed here last beyond graduation.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
- 
-        <section class="section" style="background: var(--bg-surface);">
+
+        <section class="section section-tinted">
             <div class="container">
                 <div class="section-header animate-on-scroll">
-                    <p class="section-label">// Timeline</p>
+                    <p class="section-label">Timeline</p>
                     <h2 class="section-title">Our Journey</h2>
                 </div>
                 <div class="grid-4">
@@ -183,37 +160,36 @@
                     <div class="card animate-on-scroll text-center">
                         <div class="card-date">2024</div>
                         <h3 class="card-title">Regional Finalists</h3>
-                        <p class="card-text">Two teams qualified for ICPC Asia Regional — our best competitive season yet.</p>
+                        <p class="card-text">Two teams qualified for ICPC Asia Regional &mdash; our best competitive season yet.</p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="index.html" class="logo">SGIPC</a>
+                    <a href="index.php" class="logo">SGIPC</a>
                     <p>Special Group Interested in Programming Contest at Khulna University of Engineering & Technology. Building the next generation of competitive programmers since 2015.</p>
                 </div>
                 <div class="footer-nav">
                     <h4 class="footer-title">Quick Links</h4>
                     <ul class="footer-links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="events.html">Events</a></li>
-                        <li><a href="members.html">Members</a></li>
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="about.php">About</a></li>
+                        <li><a href="events.php">Events</a></li>
+                        <li><a href="members.php">Members</a></li>
                     </ul>
                 </div>
                 <div class="footer-nav">
                     <h4 class="footer-title">Resources</h4>
                     <ul class="footer-links">
-                        <li><a href="resources.html">Beginner</a></li>
-                        <li><a href="resources.html">Intermediate</a></li>
-                        <li><a href="resources.html">Advanced</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="resources.php">Beginner</a></li>
+                        <li><a href="resources.php">Intermediate</a></li>
+                        <li><a href="resources.php">Advanced</a></li>
+                        <li><a href="contact.php">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-nav">
@@ -227,7 +203,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p class="footer-copyright">&copy; 2024 SGIPC — KUET. All rights reserved.</p>
+                <p class="footer-copyright">&copy; <?php echo date('Y'); ?> SGIPC &mdash; KUET. All rights reserved.</p>
                 <div class="footer-social">
                     <a href="#" aria-label="Facebook">f</a>
                     <a href="#" aria-label="Discord">d</a>
@@ -238,9 +214,4 @@
         </div>
     </footer>
 
- 
-    <button class="scroll-top" aria-label="Scroll to top">↑</button>
-
-    <script src="js/script.js"></script>
-</body>
-</html>
+<?php include 'includes/footer.php'; ?>
