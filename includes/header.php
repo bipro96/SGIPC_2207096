@@ -75,13 +75,6 @@ $currentUser = getCurrentUser();
             </li>
 
             <li>
-                <a href="gallery.php"
-                   class="nav-link <?php echo $activePage === 'gallery' ? 'active' : ''; ?>">
-                    Gallery
-                </a>
-            </li>
-
-            <li>
                 <a href="contact.php"
                    class="nav-link <?php echo $activePage === 'contact' ? 'active' : ''; ?>">
                     Contact
