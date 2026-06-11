@@ -13,7 +13,9 @@
         animateSelector: '.animate-on-scroll',
         counterSelector: '.stat-number',
         counterDuration: 2000,
-        scrollOffset: 100
+        scrollOffset: 100,
+        heroSliderSelector: '.hero-slider',
+        heroSliderInterval: 4500
     };
 
     
@@ -75,6 +77,80 @@
         btn.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
+    }
+
+
+    function initHeroSlider() {
+        const slider = $(CONFIG.heroSliderSelector);
+        if (!slider) return;
+
+        const track = $('.hero-slider-track', slider);
+        const slides = $$('.hero-slide', slider);
+        const prev = $('.hero-slider-prev', slider);
+        const next = $('.hero-slider-next', slider);
+        const dotsWrap = $('.hero-slider-dots', slider);
+        if (!track || slides.length < 2 || !dotsWrap) return;
+
+        let current = 0;
+        let timer;
+
+        const dots = slides.map((_, index) => {
+            const dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = 'hero-slider-dot';
+            dot.setAttribute('aria-label', `Show photo ${index + 1}`);
+            dot.addEventListener('click', () => {
+                goToSlide(index);
+                restart();
+            });
+            dotsWrap.appendChild(dot);
+            return dot;
+        });
+
+        const update = () => {
+            track.style.transform = `translateX(-${current * 100}%)`;
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === current);
+                dot.setAttribute('aria-current', index === current ? 'true' : 'false');
+            });
+        };
+
+        const goToSlide = (index) => {
+            current = (index + slides.length) % slides.length;
+            update();
+        };
+
+        const start = () => {
+            stop();
+            timer = window.setInterval(() => goToSlide(current + 1), CONFIG.heroSliderInterval);
+        };
+
+        const stop = () => {
+            window.clearInterval(timer);
+        };
+
+        const restart = () => {
+            stop();
+            start();
+        };
+
+        prev?.addEventListener('click', () => {
+            goToSlide(current - 1);
+            restart();
+        });
+
+        next?.addEventListener('click', () => {
+            goToSlide(current + 1);
+            restart();
+        });
+
+        slider.addEventListener('mouseenter', stop);
+        slider.addEventListener('mouseleave', start);
+        slider.addEventListener('focusin', stop);
+        slider.addEventListener('focusout', start);
+
+        update();
+        start();
     }
 
   
@@ -158,6 +234,7 @@
         initMobileNav();
         initNavbarScroll();
         initScrollTop();
+        initHeroSlider();
         initCounters();
         initScrollAnimations();
         initSmoothScroll();

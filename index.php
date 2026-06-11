@@ -20,7 +20,10 @@ include 'includes/header.php';
         <div class="container">
             <div class="hero-layout">
                 <div class="hero-content">
-                    <p class="hero-label">Khulna University of Engineering & Technology</p>
+                    <div class="hero-affiliation">
+                        <img src="assets/images/kuet-logo.png" alt="KUET logo" class="hero-affiliation-logo">
+                        <span>Khulna University of Engineering & Technology</span>
+                    </div>
                     <h1 class="hero-title">SGIPC</h1>
                     <p class="hero-tagline"><?php echo sanitize($settings['tagline'] ?? 'A creative programming club where KUET coders practice, compete, and build contest confidence together.'); ?></p>
                     <div class="hero-buttons">
@@ -33,8 +36,29 @@ include 'includes/header.php';
                         <span>ICPC preparation</span>
                     </div>
                 </div>
-                <div class="hero-visual" aria-hidden="true">
-                    <img src="assets/images/hero-visual.svg" alt="" class="hero-image" onerror="this.style.display='none'">
+                <div class="hero-visual">
+                    <div class="hero-slider" aria-label="SGIPC activity photos">
+                        <div class="hero-slider-track">
+                            <div class="hero-slide">
+                                <img src="assets/images/sgipc-collage.jpg" alt="SGIPC members and contest moments">
+                            </div>
+                            <div class="hero-slide">
+                                <img src="assets/images/gallery1.jpg" alt="SGIPC programming session">
+                            </div>
+                            <div class="hero-slide">
+                                <img src="assets/images/gallery2.jpg" alt="SGIPC event participants">
+                            </div>
+                            <div class="hero-slide">
+                                <img src="assets/images/gallery3.jpg" alt="SGIPC prize giving moment">
+                            </div>
+                            <div class="hero-slide">
+                                <img src="assets/images/icpc-world-finals.jpg" alt="ICPC World Finals memory">
+                            </div>
+                        </div>
+                        <button class="hero-slider-btn hero-slider-prev" type="button" aria-label="Previous photo">&lsaquo;</button>
+                        <button class="hero-slider-btn hero-slider-next" type="button" aria-label="Next photo">&rsaquo;</button>
+                        <div class="hero-slider-dots" aria-label="Choose photo"></div>
+                    </div>
                 </div>
             </div>
         </div>
